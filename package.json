@@ -1,0 +1,58 @@
+{
+    "name": "ai-sdk-provider-llama-cpp",
+    "version": "0.0.2",
+    "description": "Llama.cpp provider for the Vercel AI SDK",
+    "license": "Apache-2.0",
+    "author": "ISHII Eiju",
+    "sideEffects": false,
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist/**/*",
+        "CHANGELOG.md",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "build": "npm run clean && tsup",
+        "build:watch": "npm run clean && tsup --watch",
+        "clean": "del-cli dist *.tsbuildinfo",
+        "lint": "eslint \"./**/*.ts*\"",
+        "type-check": "tsc --noEmit",
+        "prettier-check": "prettier --check \"./**/*.ts*\"",
+        "test": "vitest run"
+    },
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js"
+        }
+    },
+    "dependencies": {
+        "@ai-sdk/provider": "^2.0.0",
+        "@ai-sdk/provider-utils": "^3.0.19",
+        "@ai-sdk/openai-compatible": "^1.0.28"
+    },
+    "devDependencies": {
+        "@types/node": "^20.17.24",
+        "del-cli": "^6.0.0",
+        "tsup": "^8.0.0",
+        "typescript": "^5.8.3",
+        "vitest": "^1.0.0",
+        "zod": "^3.23.8",
+        "eslint": "^8.0.0",
+        "prettier": "^3.0.0"
+    },
+    "peerDependencies": {
+        "zod": "^3.23.8 || ^4.1.0"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
