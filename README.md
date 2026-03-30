@@ -88,6 +88,23 @@ for await (const textPart of result.textStream) {
 
 ## Documentation
 
+### Token Usage Reporting (Usage Extraction)
+
+The **llama.cpp** server returns token usage statistics in a custom `timings` field within the streaming response (e.g., `prompt_n`, `predicted_n`), which differs from the standard OpenAI `usage` format. 
+
+To bridge this gap, this provider automatically intercepts the underlying `fetch` requests:
+1. It monitors incoming Server-Sent Events (SSE) during streaming.
+2. When the `timings` property is detected, the provider dynamically generates an additional standard OpenAI-compatible chunk (`choices: []` along with the mapped `usage` object).
+3. The Vercel AI SDK seamlessly parses this injected chunk, allowing your application to receive accurate `inputTokens` and `outputTokens` metrics natively without any extra configuration.
+
+If you are building your own custom OpenAI-compatible provider and just want to reuse this parsing logic, you can import and apply the wrapper manually:
+
+```ts
+import { createLlamaCppFetch } from 'ai-sdk-provider-llama-cpp';
+
+const customFetch = createLlamaCppFetch(fetch);
+// pass this customFetch to your provider's `fetch` option
+```
 
 ## Local Build & Usage
 

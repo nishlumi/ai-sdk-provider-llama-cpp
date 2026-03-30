@@ -1,6 +1,7 @@
 export {
     createLlamaCpp,
     llamaCpp,
+    createLlamaCppFetch,
 } from './llama-cpp-provider';
 export type {
     LlamaCppProvider,

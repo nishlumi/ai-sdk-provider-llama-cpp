@@ -1,6 +1,6 @@
 {
     "name": "ai-sdk-provider-llama-cpp",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Llama.cpp provider for the Vercel AI SDK",
     "license": "Apache-2.0",
     "author": "ISHII Eiju",
